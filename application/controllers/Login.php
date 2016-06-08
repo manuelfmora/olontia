@@ -25,7 +25,9 @@ class Login extends CI_Controller{
         if ($this->input->post('entrar')) {//Botón entrar pulsado
         
             if ($this->M_User->getCount_NombreUsuario($this->input->post('username')) > 0) {//Existe Usuario
-                if (password_verify($this->input->post('clave'), $this->M_User->getClave($this->input->post('username')))) {
+                $a=$this->input->post('username');
+                $b=$this->input->post('clave');                         
+                if (password_verify($this->input->post('clave'), $this->M_User->getClave($this->input->post('username')))&&$this->M_User->getEstado($a,$b)) {
                     //la clave es correcta
                     $this->Login($this->input->post('username'));
                 } else {

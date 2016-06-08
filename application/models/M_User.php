@@ -91,6 +91,24 @@ class M_User extends CI_Model{
         return $query->num_rows();
     }
     
+        /**
+     * Consulta el número de usuario que tienen el nombre de usuario pasado por parámetro y no es el ID pasado por parámetro
+     * @param String $nombre_usu Nombre de usuario
+     * @param Int $idUsuario ID de usuario
+     * @return Int Nº de usuarios
+     */
+    public function getEstado($username, $clave) {
+        
+        $query = $this->db->query("SELECT estado "
+                . "FROM usuario "
+                . "WHERE nombre_usu = '$username' "
+                . "AND estado = 'A' "
+                . "AND clave = '$clave'; ");
+       
+
+        return $query->num_rows();
+    }
+    
     /**
      * Consulta el id de usuario a través de su nombre de usuario
      * @param String $nombre_usu Nombre de usuario

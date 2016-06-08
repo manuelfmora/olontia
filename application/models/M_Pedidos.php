@@ -126,7 +126,7 @@ class M_Pedidos extends CI_Model {
             'stock' => $stock
         );
         $this->db->where('idProducto', $idProducto);
-        $this->db->update('Producto', $data);
+        $this->db->update('producto', $data);
     }
     
     /**
