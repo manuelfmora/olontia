@@ -92,9 +92,9 @@ class M_User extends CI_Model{
     }
     
         /**
-     * Consulta el número de usuario que tienen el nombre de usuario pasado por parámetro y no es el ID pasado por parámetro
-     * @param String $nombre_usu Nombre de usuario
-     * @param Int $idUsuario ID de usuario
+     * Consulta 
+     * @param String $username Nombre de usuario
+     * @param String $clave Clave usuario
      * @return Int Nº de usuarios
      */
     public function getEstado($username, $clave) {
