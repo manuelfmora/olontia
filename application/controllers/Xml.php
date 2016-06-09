@@ -34,7 +34,7 @@ class Xml extends CI_Controller {
         Header('Content-type: text/xml; charset=utf-8');
         Header('Content-type: octec/stream');
         Header('Content-disposition: filename="productosycategorias.xml"');
-        print($xml->asXML());
+        print($xml->asXML());//Retorna un string XML correcto basado en un elemento SimpleXML
     }
 
     /**
@@ -75,9 +75,9 @@ class Xml extends CI_Controller {
 
         if (file_exists($archivo['tmp_name'])) {
             $contentXML = utf8_encode(file_get_contents($archivo['tmp_name']));
-            $xml = simplexml_load_string($contentXML);
+            $xml = simplexml_load_string($contentXML);//Interpreta un string de XML en un objeto
 
-            $this->InsertFromXML($xml);
+            $this->InsertFromXML($xml);//LLamamos a la funcion que crea el array para introducirlo en la base de datos
 
             $cuerpo = $this->load->view('V_Importok', '', true);
             $this->load->view('V_Plantilla', Array('cuerpo' => $cuerpo, 
@@ -112,11 +112,11 @@ class Xml extends CI_Controller {
                 $pro['cod_producto'] = (string) $producto->cod_producto;
                 $pro['nombre_pro'] = (string) $producto->nombre_pro;
                 $pro['precio'] = (string) $producto->precio;
-                $pro['imagen'] = (string) $producto->imagen;
-                $pro['iva'] = (string) $producto->iva;
                 $pro['descuento'] = (string) $producto->descuento;
+                $pro['imagen'] = (string) $producto->imagen;
+                $pro['iva'] = (string) $producto->iva;              
                 $pro['descripcion'] = (string) $producto->descripcion;
-                $pro['seleccionada'] = (string) $producto->seleccionada;
+                $pro['seleccionado'] = (string) $producto->seleccionado;
                 $pro['mostrar'] = (string) $producto->mostrar;
                 $pro['fecha_inicio'] = (string) $producto->fecha_inicio;
                 $pro['fecha_fin'] = (string) $producto->fecha_fin;
