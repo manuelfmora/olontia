@@ -121,7 +121,6 @@ class Xml extends CI_Controller {
                 $pro['fecha_inicio'] = (string) $producto->fecha_inicio;
                 $pro['fecha_fin'] = (string) $producto->fecha_fin;
                 $pro['stock'] = (string) $producto->stock;
-
                 $pro['idCategoria'] = $categoria_id;
                 // Inserta producto
                 $this->M_Xml->AddProducto($pro);
