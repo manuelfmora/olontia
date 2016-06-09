@@ -7,7 +7,7 @@
                 <h2>REGISTRARSE</h2>
                 <ol class="breadcrumb">
                     <li><a href="<?php anchor('Main') ?>">Home</a></li>                   
-                    <li class="active">Account</li>
+                    <li class="active">Registrarse</li>
                 </ol>
             </div>
         </div>

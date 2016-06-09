@@ -97,15 +97,13 @@ class M_User extends CI_Model{
      * @param String $clave Clave usuario
      * @return Int Nº de usuarios
      */
-    public function getEstado($username, $clave) {
+    public function getEstado($username) {
         
         $query = $this->db->query("SELECT estado "
                 . "FROM usuario "
                 . "WHERE nombre_usu = '$username' "
-                . "AND estado = 'A' "
-                . "AND clave = '$clave'; ");
-       
-
+                . "AND estado = 'A' ;"
+                );   
         return $query->num_rows();
     }
     

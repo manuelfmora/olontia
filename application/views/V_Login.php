@@ -21,9 +21,11 @@
                         if (isset($error))
                             echo $error;
                         ?>
-                        <div class="form-group">
-                            <button class="aa-browse-btn " type="submit" value="entrar" name="entrar">Login</button>  
-                        </div>
+                        <center>
+                            <div class="form-group">
+                                <button class="aa-browse-btn " type="submit" value="entrar" name="entrar">Login</button>  
+                            </div>
+                        </center>
                         <label > </label>
                         <p class="aa-lost-password"><a href="<?=  base_url().'index.php/RestaurarClave'?>">¿Olvidaste tu contraseña?</a></p>
                         <div class="aa-register-now">

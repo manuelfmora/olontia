@@ -25,11 +25,18 @@ class Login extends CI_Controller{
         if ($this->input->post('entrar')) {//Botón entrar pulsado
         
             if ($this->M_User->getCount_NombreUsuario($this->input->post('username')) > 0) {//Existe Usuario
-                $a=$this->input->post('username');
-                $b=$this->input->post('clave');                         
-                if (password_verify($this->input->post('clave'), $this->M_User->getClave($this->input->post('username')))&&$this->M_User->getEstado($a,$b)) {
-                    //la clave es correcta
-                    $this->Login($this->input->post('username'));
+
+                if (password_verify($this->input->post('clave'), $this->M_User->getClave($this->input->post('username')))) {
+                     //comprobamos que el usuario no esta dado de baja                
+                    if($this->M_User->getEstado($this->input->post('username'))==0){
+                        
+                        $this->MuestraErrorBaja();
+                        
+                    }  else {
+                         //la clave es correcta
+                         $this->Login($this->input->post('username'));
+                    }
+         
                 } else {
                     $this->MuestraErrorEnVista();
                 }
@@ -38,7 +45,9 @@ class Login extends CI_Controller{
             }
         } else {
             $cuerpo=$this->load->view('V_Login',Array(),TRUE ); //Generamos la vista
-            $this->load->view('V_Plantilla', Array('titulo' => 'Login', 'cuerpo' => $cuerpo, 'homeactive' => 'active'));
+            $this->load->view('V_Plantilla', Array('titulo' => 'Login', 
+                                                    'cuerpo' => $cuerpo, 
+                                                    'homeactive' => 'active'));
         }
     }
 
@@ -83,6 +92,15 @@ class Login extends CI_Controller{
      */
     public function MuestraErrorEnVista() {
         $error = "<div class='alert alert-danger'><b>¡Error!</b> Usuario o contraseña incorrectos</div>";
+        $cuerpo = $this->load->view('V_Login', array('error' => $error), true); //Generamos la vista
+        $this->load->view('V_Plantilla', Array('titulo' => 'Login', 'cuerpo' => $cuerpo, 'homeactive' => 'active'));
+    }
+    
+      /**
+     * Muestra un error si el usuario esta dado de baja
+     */
+    public function MuestraErrorBaja() {
+        $error = "<div class='alert alert-danger'><b>¡Error!</b> Usted esta dado de baja</div>";
         $cuerpo = $this->load->view('V_Login', array('error' => $error), true); //Generamos la vista
         $this->load->view('V_Plantilla', Array('titulo' => 'Login', 'cuerpo' => $cuerpo, 'homeactive' => 'active'));
     }
